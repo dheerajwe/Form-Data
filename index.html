@@ -40,11 +40,11 @@
         // Function to fetch data from the API
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:3000/api/data');
+                const response = await fetch('https://course-registration-code.onrender.com/api/data');
                 const data = await response.json();
                 const tableBody = document.getElementById('data-table-body');
-
-                // Clear any existing data
+                
+                // Clear any existing data  
                 tableBody.innerHTML = '';
 
                 // Populate the table with fetched data
