@@ -11,15 +11,15 @@
 <body>
     <div class="container">
         <div class="card">
-          <h2>Register</h2>
-          <form id="data-form">
-            <input type="text" id="name" name="username" placeholder="Enter Name" required>
-            <input type="number" id="id" name="idnum" placeholder="Enter Id" required>
-            <input type="text" id="course" name="course" placeholder="Enter Course" required>
-            <input type="tel" id="mobile" name="mobile" placeholder="Enter Mobile" required>
-            <input type="email" id="mail" name="mail" placeholder="Enter Mail Id" required>
-            <button type="submit">Register</button>
-          </form>
+            <h2>Register</h2>
+            <form id="data-form">
+                <input type="text" id="name" name="username" placeholder="Enter Name" required>
+                <input type="number" id="id" name="idnum" placeholder="Enter Id" required>
+                <input type="text" id="course" name="course" placeholder="Enter Course" required>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter Mobile" required>
+                <input type="email" id="mail" name="mail" placeholder="Enter Mail Id" required>
+                <button type="submit">Register</button>
+            </form>
         </div>
     </div>
 
@@ -79,6 +79,8 @@
             const course = document.getElementById('course').value;
             const mobile = document.getElementById('mobile').value;
             const mail = document.getElementById('mail').value;
+            const submitButton = event.target.querySelector('button[type="submit"]');
+            submitButton.disabled = true;  // Disable the button
 
             try {
                 const response = await fetch('https://course-registration-code.onrender.com/api/data', {
@@ -90,10 +92,8 @@
                 });
 
                 if (response.ok) {
-                    // Refresh the data list
-                    alert("Succesfully Registered")
+                    alert("Successfully Registered");
                     fetchData();
-                    // Reset the form
                     document.getElementById('data-form').reset();
                 } else {
                     const errorData = await response.json();
@@ -102,6 +102,8 @@
                 }
             } catch (error) {
                 console.error('Error adding user:', error);
+            } finally {
+                submitButton.disabled = false;  // Re-enable the button
             }
         }
 
@@ -112,3 +114,4 @@
     </script>
 </body>
 </html>
+    
